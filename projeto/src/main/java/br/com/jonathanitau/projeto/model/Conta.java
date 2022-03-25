@@ -3,6 +3,8 @@ package br.com.jonathanitau.projeto.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,8 +14,6 @@ public class Conta {
 
 	@Id
 	
-	@Column(name="ag") 
-	private int ag; 
 	
 	@Column(name="conta") 
 	private int conta; 
@@ -26,13 +26,18 @@ public class Conta {
 	
 	@Column(name="saida")
 	private String saida;
+	
 
-	public int getAg() {
-		return ag;
+	@ManyToOne
+	@JoinColumn(name="ag")
+	private Cliente titular;
+
+	public Cliente getTitular() {
+		return titular;
 	}
 
-	public void setAg(int ag) {
-		this.ag = ag;
+	public void setTitular(Cliente titular) {
+		this.titular = titular;
 	}
 
 	public int getConta() {
@@ -67,7 +72,5 @@ public class Conta {
 		this.saida = saida;
 	}
 
-	
-	
-	
+
 }
